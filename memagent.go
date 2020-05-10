@@ -32,6 +32,11 @@ func (agent *MemAgent) Add(record string) {
 	agent.records = append(agent.records, record)
 }
 
+// Add record with each value
+func (agent *MemAgent) AddWith(measurement string, tag string, value float64) {
+	agent.records = append(agent.records, fmt.Sprintf("%s,%s value=%v %v", measurement, tag, value, time.Now().UnixNano()))
+}
+
 func (agent *MemAgent) Adds(records []string) {
 	for _, record := range records {
 		agent.records = append(agent.records, record)
