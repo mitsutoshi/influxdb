@@ -55,6 +55,7 @@ func (agent *MemAgent) Run(errCh chan<- error) {
 				err := agent.client.WriteString(agent.records[i])
 				if err != nil {
 					agent.client.Logger.Println("Failed to write record.", err)
+					errCh <- err
 				}
 			}
 
